@@ -154,13 +154,13 @@ function Logica1 () {
     } else {
         Proverka ();
         if (Widpovid == 1) {
-            Bot.innerHTML = "Камінь";
+            Bot.innerHTML = "Папір";
             Bot_Number = 3;
         } else if (Widpovid == 2) {
-            Bot.innerHTML = "Ножиці";
+            Bot.innerHTML = "Камінь";
             Bot_Number = 1;
         } else if (Widpovid == 3) {
-            Bot.innerHTML = "Папір";
+            Bot.innerHTML = "Ножиці";
             Bot_Number = 2;  
         };
     }
