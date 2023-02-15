@@ -13,8 +13,18 @@
 
    </head>
    <body>
+      <div class="Hub">
+         <h1>Вітаю вас в грі "Камінь Ножиці Папір"</h1>
+         <h2>Ця гра вам хорошо відома, але у нас вона вміє думати (хоть трішки, але вона буде вчитися)</h2>
+         <p>Правила досить прості, вам потрібно переграти бота, на протязі 75 раундів :)</p>
+         <div class="Start" onclick="Start_Function()">Почати грати !</div>
+      </div>
+      <div class="Box-Final"><div class="Win_Draw_Loss-Final">
+         <p id="Text_Final"></p>
+         <div class="Start_Hub" onclick="Menu_Reset ()">Міню</div>
+      </div></div>
       <div class="Box">
-         <div class="S_Raund"> Raund 0</div>
+         <div class="S_Raund"> Раунд 0</div>
          <div class="Win_Draw_Loss-Rahunok">
             <div class="Rahunok" id="Win">0</div>
             <div class="Rahunok" id="Draw">0</div>
@@ -26,9 +36,9 @@
             <div class="Vubor" id="Bot"></div>
          </div>
          <div class="Menu">
-            <div class="Punkt" onclick="STONE ()">STONE</div>
-            <div class="Punkt" onclick="SCISSORS ()">SCISSORS</div>
-            <div class="Punkt" onclick="PAPER ()">PAPER</div>
+            <div class="Punkt" onclick="STONE ()">Камінь</div>
+            <div class="Punkt" onclick="SCISSORS ()">Ножиці</div>
+            <div class="Punkt" onclick="PAPER ()">Папір</div>
          </div>
       </div>
       <div class="JS">
