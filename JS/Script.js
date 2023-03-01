@@ -13,6 +13,10 @@ const Home_Win = document.getElementById('Win');
 const Home_Draw = document.getElementById('Draw');
 const Home_Loss = document.getElementById('Loss');
 
+const LvL0 = document.getElementById('LvL1');
+const LvL1 = document.getElementById('LvL2');
+const LvL2 = document.getElementById('LvL3');
+
 const S_Raund = document.querySelector(".S_Raund")
 
 let Win_Numder = 0;
@@ -39,8 +43,34 @@ let Win_Rah_P = 0,Win_Rah_D = 0,Win_Rah_M = 0;
 let Draw_Rah_P = 0,Draw_Rah_D = 0,Draw_Rah_M = 0;
 let Loss_Rah_P = 0,Loss_Rah_D = 0,Loss_Rah_M = 0;
 
+let LVL0, LVL1, LVL2;
+
 let Widpovid = 0;
+
+function Color_Lvl (LVL) {
+    if (LVL == 1) {
+        LvL0.classList.add('Green_Act');
+        LvL1.classList.remove('Green_Act');
+        LvL2.classList.remove('Green_Act');
+    } else if (LVL == 2) {
+        LvL0.classList.remove('Green_Act');
+        LvL1.classList.add('Green_Act');
+        LvL2.classList.remove('Green_Act');
+    } else if (LVL == 3) {
+        LvL0.classList.remove('Green_Act');
+        LvL1.classList.remove('Green_Act');
+        LvL2.classList.add('Green_Act');
+    };
+};
+
 function Start_Function() {
+    if (LvL0.classList.contains('Green_Act')) {
+        LVL0 = 1;LVL1 = 0;LVL2 = 0;
+    } else if (LvL1.classList.contains('Green_Act')) {
+        LVL0 = 1;LVL1 = 1;LVL2 = 0;
+    } else if (LvL2.classList.contains('Green_Act')) {
+        LVL0 = 1;LVL1 = 1;LVL2 = 1;
+    };
     Win_Numder = 0;Draw_Numder = 0;Loss_Numder = 0;Raund = 0;    
     P1 = 0,P2 = 0,P3 = 0,P4 = 0,P5 = 0,P6 = 0,P7 = 0,P8 = 0,P9 = 0,P10 = 0;
     STONE_Rah = 0;SCISSORS_Rah = 0;PAPER_Rah = 0;
@@ -285,7 +315,7 @@ function Win_Draw_Loss () {
     else if(You_Number == 3 && Bot_Number == 1){Win()}else if(You_Number == 3 && Bot_Number == 2){Loss()}else if(You_Number == 3 && Bot_Number == 3){Draw()}
 };
 function Logica1 () {
-    if (Raund <= 10) {
+    if (Raund <= 10 || LVL1 == 0) {
         return
     } else {
         if (STONE_Rah > SCISSORS_Rah && STONE_Rah > PAPER_Rah) {
@@ -317,230 +347,227 @@ function Logica1 () {
 };
 
 function Logica2 () {
-    console.log("Logic")
-    if (Win5 !== 0 && Win_Act2 == true) {
-        Win_Act2 = false;
-        console.log("Win_Logic_Win")
-        if (Win_Rah_P > Win_Rah_D && Win_Rah_P > Win_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 1;
-            } else if (P2 == 2) {
-                Widpovid = 2;
-            }else if (P2 == 3) {
-                Widpovid = 3;
+    if (LVL2 == 1) {
+        if (Win5 !== 0 && Win_Act2 == true) {
+            Win_Act2 = false;
+            if (Win_Rah_P > Win_Rah_D && Win_Rah_P > Win_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 1;
+                } else if (P2 == 2) {
+                    Widpovid = 2;
+                }else if (P2 == 3) {
+                    Widpovid = 3;
+                };
+            }else if(Win_Rah_D > Win_Rah_P && Win_Rah_D > Win_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 3;
+                } else if (P2 == 2) {
+                    Widpovid = 1;
+                }else if (P2 == 3) {
+                    Widpovid = 2;
+                };
+            }else if(Win_Rah_M > Win_Rah_P && Win_Rah_M > Win_Rah_D) {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            }else if (Win_Rah_P==Win_Rah_D) {
+                if (P2 == 1) {
+                    Widpovid = 1;
+                } else if (P2 == 2) {
+                    Widpovid = 2;
+                }else if (P2 == 3) {
+                    Widpovid = 3;
+                };
+            }else if (Win_Rah_D==Win_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 3;
+                } else if (P2 == 2) {
+                    Widpovid = 1;
+                }else if (P2 == 3) {
+                    Widpovid = 2;
+                };
+            }else if (Win_Rah_M==Win_Rah_P) {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            } else {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
             };
-        }else if(Win_Rah_D > Win_Rah_P && Win_Rah_D > Win_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 3;
-            } else if (P2 == 2) {
-                Widpovid = 1;
-            }else if (P2 == 3) {
-                Widpovid = 2;
-            };
-        }else if(Win_Rah_M > Win_Rah_P && Win_Rah_M > Win_Rah_D) {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        }else if (Win_Rah_P==Win_Rah_D) {
-            if (P2 == 1) {
-                Widpovid = 1;
-            } else if (P2 == 2) {
-                Widpovid = 2;
-            }else if (P2 == 3) {
-                Widpovid = 3;
-            };
-        }else if (Win_Rah_D==Win_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 3;
-            } else if (P2 == 2) {
-                Widpovid = 1;
-            }else if (P2 == 3) {
-                Widpovid = 2;
-            };
-        }else if (Win_Rah_M==Win_Rah_P) {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        } else {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        };
-        if (Widpovid == 1) {
-            Bot.innerHTML = "Камінь";
-            console.log ("Камінь");
-            Bot_Number = 1;
-        } else if (Widpovid == 2) {
-            Bot.innerHTML = "Ножиці";
-            console.log ("Ножиці");
-            Bot_Number = 2;
-        } else if (Widpovid == 3) {
-            Bot.innerHTML = "Папір";
-            console.log ("Папір");
-            Bot_Number = 3;  
-        };
-    };
-    if (Draw5 !== 0 && Draw_Act2 == true) {
-        console.log("Draw_Logic_Win")
-        Draw_Act2 = false;
-        if (Draw_Rah_P > Draw_Rah_D && Draw_Rah_P > Draw_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 1;
-            } else if (P2 == 2) {
-                Widpovid = 2;
-            }else if (P2 == 3) {
-                Widpovid = 3;
-            };
-        }else if(Draw_Rah_D > Draw_Rah_P && Draw_Rah_D > Draw_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 3;
-            } else if (P2 == 2) {
-                Widpovid = 1;
-            }else if (P2 == 3) {
-                Widpovid = 2;
-            };
-        }else if(Draw_Rah_M > Draw_Rah_P && Draw_Rah_M > Draw_Rah_D) {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        }else if (Draw_Rah_P==Draw_Rah_D) {
-            if (P2 == 1) {
-                Widpovid = 1;
-            } else if (P2 == 2) {
-                Widpovid = 2;
-            }else if (P2 == 3) {
-                Widpovid = 3;
-            };
-        }else if (Draw_Rah_D==Draw_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 3;
-            } else if (P2 == 2) {
-                Widpovid = 1;
-            }else if (P2 == 3) {
-                Widpovid = 2;
-            };
-        }else if (Draw_Rah_M==Draw_Rah_P) {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        } else {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
+            if (Widpovid == 1) {
+                Bot.innerHTML = "Камінь";
+                console.log ("Камінь");
+                Bot_Number = 1;
+            } else if (Widpovid == 2) {
+                Bot.innerHTML = "Ножиці";
+                console.log ("Ножиці");
+                Bot_Number = 2;
+            } else if (Widpovid == 3) {
+                Bot.innerHTML = "Папір";
+                console.log ("Папір");
+                Bot_Number = 3;  
             };
         };
-        if (Widpovid == 1) {
-            Bot.innerHTML = "Камінь";
-            console.log ("Камінь");
-            Bot_Number = 1;
-        } else if (Widpovid == 2) {
-            Bot.innerHTML = "Ножиці";
-            console.log ("Ножиці");
-            Bot_Number = 2;
-        } else if (Widpovid == 3) {
-            Bot.innerHTML = "Папір";
-            console.log ("Папір");
-            Bot_Number = 3;  
+        if (Draw5 !== 0 && Draw_Act2 == true) {
+            Draw_Act2 = false;
+            if (Draw_Rah_P > Draw_Rah_D && Draw_Rah_P > Draw_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 1;
+                } else if (P2 == 2) {
+                    Widpovid = 2;
+                }else if (P2 == 3) {
+                    Widpovid = 3;
+                };
+            }else if(Draw_Rah_D > Draw_Rah_P && Draw_Rah_D > Draw_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 3;
+                } else if (P2 == 2) {
+                    Widpovid = 1;
+                }else if (P2 == 3) {
+                    Widpovid = 2;
+                };
+            }else if(Draw_Rah_M > Draw_Rah_P && Draw_Rah_M > Draw_Rah_D) {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            }else if (Draw_Rah_P==Draw_Rah_D) {
+                if (P2 == 1) {
+                    Widpovid = 1;
+                } else if (P2 == 2) {
+                    Widpovid = 2;
+                }else if (P2 == 3) {
+                    Widpovid = 3;
+                };
+            }else if (Draw_Rah_D==Draw_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 3;
+                } else if (P2 == 2) {
+                    Widpovid = 1;
+                }else if (P2 == 3) {
+                    Widpovid = 2;
+                };
+            }else if (Draw_Rah_M==Draw_Rah_P) {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            } else {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            };
+            if (Widpovid == 1) {
+                Bot.innerHTML = "Камінь";
+                console.log ("Камінь");
+                Bot_Number = 1;
+            } else if (Widpovid == 2) {
+                Bot.innerHTML = "Ножиці";
+                console.log ("Ножиці");
+                Bot_Number = 2;
+            } else if (Widpovid == 3) {
+                Bot.innerHTML = "Папір";
+                console.log ("Папір");
+                Bot_Number = 3;  
+            };
         };
-    };
-    if (Loss5 !== 0 && Loss_Act2 == true) {
-        Loss_Act2 = false;
-        console.log("Loss_Logic_Win")
-        if (Loss_Rah_P > Loss_Rah_D && Loss_Rah_P > Loss_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 1;
-            } else if (P2 == 2) {
-                Widpovid = 2;
-            }else if (P2 == 3) {
-                Widpovid = 3;
+        if (Loss5 !== 0 && Loss_Act2 == true) {
+            Loss_Act2 = false;
+            if (Loss_Rah_P > Loss_Rah_D && Loss_Rah_P > Loss_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 1;
+                } else if (P2 == 2) {
+                    Widpovid = 2;
+                }else if (P2 == 3) {
+                    Widpovid = 3;
+                };
+            }else if(Loss_Rah_D > Loss_Rah_P && Loss_Rah_D > Loss_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 3;
+                } else if (P2 == 2) {
+                    Widpovid = 1;
+                }else if (P2 == 3) {
+                    Widpovid = 2;
+                };
+            }else if(Loss_Rah_M > Loss_Rah_P && Loss_Rah_M > Loss_Rah_D) {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            }else if (Loss_Rah_P==Loss_Rah_D) {
+                if (P2 == 1) {
+                    Widpovid = 1;
+                } else if (P2 == 2) {
+                    Widpovid = 2;
+                }else if (P2 == 3) {
+                    Widpovid = 3;
+                };
+            }else if (Loss_Rah_D==Loss_Rah_M) {
+                if (P2 == 1) {
+                    Widpovid = 3;
+                } else if (P2 == 2) {
+                    Widpovid = 1;
+                }else if (P2 == 3) {
+                    Widpovid = 2;
+                };
+            }else if (Loss_Rah_M==Loss_Rah_P) {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
+            } else {
+                if (P2 == 1) {
+                    Widpovid = 2;
+                } else if (P2 == 2) {
+                    Widpovid = 3;
+                }else if (P2 == 3) {
+                    Widpovid = 1;
+                };
             };
-        }else if(Loss_Rah_D > Loss_Rah_P && Loss_Rah_D > Loss_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 3;
-            } else if (P2 == 2) {
-                Widpovid = 1;
-            }else if (P2 == 3) {
-                Widpovid = 2;
+            if (Widpovid == 1) {
+                Bot.innerHTML = "Камінь";
+                console.log ("Камінь");
+                Bot_Number = 1;
+            } else if (Widpovid == 2) {
+                Bot.innerHTML = "Ножиці";
+                console.log ("Ножиці");
+                Bot_Number = 2;
+            } else if (Widpovid == 3) {
+                Bot.innerHTML = "Папір";
+                console.log ("Папір");
+                Bot_Number = 3;  
             };
-        }else if(Loss_Rah_M > Loss_Rah_P && Loss_Rah_M > Loss_Rah_D) {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        }else if (Loss_Rah_P==Loss_Rah_D) {
-            if (P2 == 1) {
-                Widpovid = 1;
-            } else if (P2 == 2) {
-                Widpovid = 2;
-            }else if (P2 == 3) {
-                Widpovid = 3;
-            };
-        }else if (Loss_Rah_D==Loss_Rah_M) {
-            if (P2 == 1) {
-                Widpovid = 3;
-            } else if (P2 == 2) {
-                Widpovid = 1;
-            }else if (P2 == 3) {
-                Widpovid = 2;
-            };
-        }else if (Loss_Rah_M==Loss_Rah_P) {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        } else {
-            if (P2 == 1) {
-                Widpovid = 2;
-            } else if (P2 == 2) {
-                Widpovid = 3;
-            }else if (P2 == 3) {
-                Widpovid = 1;
-            };
-        };
-        if (Widpovid == 1) {
-            Bot.innerHTML = "Камінь";
-            console.log ("Камінь");
-            Bot_Number = 1;
-        } else if (Widpovid == 2) {
-            Bot.innerHTML = "Ножиці";
-            console.log ("Ножиці");
-            Bot_Number = 2;
-        } else if (Widpovid == 3) {
-            Bot.innerHTML = "Папір";
-            console.log ("Папір");
-            Bot_Number = 3;  
         };
     };
-
 }; 
 
 function Leave () {
